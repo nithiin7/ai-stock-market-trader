@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  ai-stock-trader:
+    build: .
+    ports:
+      - "7860:7860"
+    environment:
+      - PYTHONPATH=/app/src
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=7860
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env:ro
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  ai-stock-trader-trading:
+    build: .
+    command: ["uv", "run", "python", "-m", "ai_stock_trader", "--mode", "trading"]
+    environment:
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env:ro
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - ai-stock-trader
+
+volumes:
+  data:
+  logs:

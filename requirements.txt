@@ -1,0 +1,40 @@
+# AI Stock Trader Dependencies
+# For production use, consider using uv.toml instead
+
+# Core AI and ML
+openai>=1.0.0
+agents>=0.1.0
+
+# Web Interface
+gradio>=4.0.0
+
+# Data Processing
+pandas>=2.0.0
+plotly>=5.0.0
+
+# Data Validation and Settings
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# Market Data
+polygon-api-client>=1.0.0
+
+# Web Framework
+fastapi>=0.100.0
+uvicorn>=0.20.0
+
+# MCP Integration
+mcp>=0.1.0
+
+# HTTP Client
+requests>=2.31.0
+
+# Development Dependencies (optional)
+# pytest>=7.0.0
+# pytest-asyncio>=0.21.0
+# pytest-cov>=4.0.0
+# black>=23.0.0
+# isort>=5.12.0
+# flake8>=6.0.0
+# mypy>=1.0.0
+# pre-commit>=3.0.0
